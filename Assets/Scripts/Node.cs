@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    public Vector2 Pos => transform.position;
+    public Vector2 nodePos => transform.position;
 
-    public Block OccupiedBlock;
+    public Block OccupiedBlock { get; private set; }
+
+    public void SetOccupiedBlock(Block value)
+    {
+        OccupiedBlock = value;
+    }
 }

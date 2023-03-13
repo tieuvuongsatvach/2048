@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Block : MonoBehaviour
+public class Block : Node
 {
-    public int Value;
-    public Node Node;
-    public Block MergingBlock;
-    public bool Merging;
+    public int Value { get; private set; }
+    public Node Node { get; private set; }
+    public Block MergingBlock { get; private set; }
+    public bool Merging { get; private set; }
 
-    public Vector2 Pos => transform.position;
+    public Vector2 blockPos => transform.position;
     [SerializeField] private SpriteRenderer rend;
     [SerializeField] private TextMeshPro text;
 
@@ -23,16 +23,16 @@ public class Block : MonoBehaviour
 
     public void SetBlock(Node node)
     {
-        if (Node != null) Node.OccupiedBlock = null;
+        if (Node != null) Node.SetOccupiedBlock(null);
         Node = node;
-        Node.OccupiedBlock = this;
+        Node.SetOccupiedBlock(this);
     }
 
     public void MergeBlock(Block blockToMergeWith)
     {
         MergingBlock = blockToMergeWith;
 
-        Node.OccupiedBlock = null;
+        Node.SetOccupiedBlock(null);
 
         blockToMergeWith.Merging = true;
     }
