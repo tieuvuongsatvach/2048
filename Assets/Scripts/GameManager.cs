@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private BlockType GetBlockTypeByValue(int value) => types.First(t => t.Value == value);
 
-    void Start()
+    void Awake()
     {
         ChangeState(GameState.GenerateLevel);
     }
@@ -149,13 +149,11 @@ public class GameManager : MonoBehaviour
             block.transform.position = movePoint;
         }
 
-
         foreach (var block in orderedBlocks.Where(b => b.MergingBlock != null))
         {
             MergeBlocks(block.MergingBlock, block);
         }
         ChangeState(GameState.SpawningBlocks);
-
     }
 
     void MergeBlocks(Block baseBlock, Block mergingBlock)

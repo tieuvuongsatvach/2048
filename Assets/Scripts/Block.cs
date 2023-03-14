@@ -9,8 +9,8 @@ public class Block : Node
     public Node Node { get; private set; }
     public Block MergingBlock { get; private set; }
     public bool Merging { get; private set; }
-
     public Vector2 blockPos => transform.position;
+
     [SerializeField] private SpriteRenderer rend;
     [SerializeField] private TextMeshPro text;
 
